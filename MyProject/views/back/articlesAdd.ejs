@@ -1,0 +1,138 @@
+<%- include header.ejs %>
+<%- include left_nav.ejs %>
+
+ <div id="dcMain">
+   <!-- 当前位置 -->
+<div id="urHere">DouPHP 管理中心<b>></b><strong>添加文章</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+            <h3><a href="/admin/articles" class="actionBtn">文章列表</a>添加文章</h3>
+    <form action="article.php?rec=insert" method="post" enctype="multipart/form-data">
+     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+      <tr>
+       <td width="90" align="right">文章名称</td>
+       <td>
+        <input type="text" name="title" value="" size="80" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">文章分类</td>
+       <td>
+
+        <select name="cat_id">
+            <option value="0">未分类</option>
+            <% for(var j=0;j<categoryA.length;j++){ %>
+            <option  value='<%= categoryA[j]._id %>'><%= categoryA[j].cat_name %></option>
+            <% } %>
+
+         </select>
+       </td>
+      </tr>
+            <tr>
+       <td align="right" valign="top">文章描述</td>
+       <td>
+        <!-- KindEditor -->
+        <link rel="stylesheet" href="/js/kindeditor/themes/default/default.css" />
+			<link rel="stylesheet" href="/js/kindeditor/plugins/code/prettify.css" />
+			<script charset="utf-8" src="/js/kindeditor/kindeditor.js"></script>
+			<script charset="utf-8" src="/js/kindeditor/lang/zh_CN.js"></script>
+			<script charset="utf-8" src="/js/kindeditor/plugins/code/prettify.js"></script>
+        <script>
+					KindEditor.ready(function(K) {
+						var editor1 = K.create('textarea[name="content"]', {
+							cssPath : '../plugins/code/prettify.css',
+							uploadJson : '../php/upload_json.php',
+							fileManagerJson : '../php/file_manager_json.php',
+							allowFileManager : true,
+							afterCreate : function() {
+								var self = this;
+								K.ctrl(document, 13, function() {
+									self.sync();
+									K('form[name=example]')[0].submit();
+								});
+								K.ctrl(self.edit.doc, 13, function() {
+									self.sync();
+									K('form[name=example]')[0].submit();
+								});
+							}
+						});
+						prettyPrint();
+					});
+			</script>
+        <!-- /KindEditor -->
+        <textarea id="content" name="content" style="width:780px;height:400px;" class="textArea"></textarea>
+       </td>
+      </tr>
+      <tr>
+       <td align="right">缩略图</td>
+       <td>
+        <input type="file" name="image" size="38" class="inpFlie" />
+        <img src="images/icon_no.png"></td>
+      </tr>
+      <tr>
+       <td align="right">关键字</td>
+       <td>
+        <input type="text" name="keywords" value="" size="50" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">简单描述</td>
+       <td>
+        <input type="text" name="description" value="" size="50" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td></td>
+       <td>
+        <input type="hidden" name="token" value="7e4a88fb" />
+        <input type="hidden" name="image" value="">
+        <input type="hidden" name="id" value="">
+        <input id="submit" name="submit" class="btn" type="button" value="提交" />
+       </td>
+      </tr>
+     </table>
+    </form>
+       </div>
+ </div>
+ <div class="clear"></div>
+<div id="dcFooter">
+ <div id="footer">
+  <div class="line"></div>
+  <ul>
+   版权所有 © 2013-2015 漳州豆壳网络科技有限公司，并保留所有权利。
+  </ul>
+ </div>
+</div><!-- dcFooter 结束 -->
+<div class="clear"></div> </div>
+ <script type="text/javascript">
+ 
+ onload = function()
+ {
+   document.forms['action'].reset();
+ }
+
+ function douAction()
+ {
+     var frm = document.forms['action'];
+
+     frm.elements['new_cat_id'].style.display = frm.elements['action'].value == 'category_move' ? '' : 'none';
+ }
+// $(function () {
+     $('#submit').click(function () {
+         $.ajax({
+             url: '/admin/articlesAdd',
+             type: 'POST',
+             data: $('form').serialize(),
+             success: function (res) {
+                 if(res.status == 0){
+                     location.href='/admin/articles';
+                 }else{
+                     alert(res.msg)
+                 }
+             },
+             error: function (err) {
+                 throw err;
+             }
+         })
+     })
+// })
+ </script>
+<%- include footer.ejs %>
