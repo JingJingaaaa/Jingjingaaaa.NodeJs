@@ -62,8 +62,7 @@
                 </div>
                 <br>
                 <div class="am-input-group am-animation-slide-left log-animation-delay">
-                    <input type="password" name="password" class="am-form-field am-radius log-input" placeholder="密码" minlength="11"
-                           required>
+                    <input type="password" name="password" class="am-form-field am-radius log-input" placeholder="密码" minlength="6" required>
                     <span class="am-input-group-label log-icon am-radius"><i
                             class="am-icon-lock am-icon-sm am-icon-fw"></i></span>
                 </div>
@@ -101,8 +100,9 @@
 
 <script>
   var login=document.getElementById("submit");
-    login.onclick=function(){
-        window.location="index.html"
+    login.onclick=function(e){
+        e.preventDefault();
+        window.location.href="index.html"
     }
 </script>
 </body>

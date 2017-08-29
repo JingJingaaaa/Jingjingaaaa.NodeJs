@@ -16,7 +16,7 @@ router.use((req,res,next) => {
         resData.email = ''  // 未登录
     }
     next()
-})
+});
 
 router.get('/', (req,res) => {
     /*设置跨域访问
@@ -25,7 +25,7 @@ router.get('/', (req,res) => {
     res.header("Access-Control-Allow-Origin", 'http://localhost:63342');
     res.header("Access-Control-Allow-Credentials", "true");
     CategoryA.find().then(result => {
-        let typeArr = []
+        let typeArr = [];
         result.forEach(function (item,index) {
             typeArr.push(item.cat_name)
         })

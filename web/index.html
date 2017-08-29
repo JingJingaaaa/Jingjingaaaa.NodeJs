@@ -149,8 +149,8 @@
             <p>
                 <ul>
                     <li>jQuery</li>
-                    <li>Zepto.js</li>
-                    <li>Seajs</li>
+                    <li>BOOTSTRAP</li>
+                    <li>VUE.js</li>
                     <li>LESS</li>
                 </ul>
             </p>
@@ -187,15 +187,15 @@
             },
             success:function(res){
                 console.log(res)
-                let email=res.email||"";
-                if(email){
-                    $("#log-re").hide();
-                    $("#email").text(email);
-                    $("#exit").show();
-                }else{
-                    $("#exit").hide();
-                    $("#log-re").show();
-                }
+//                let email=res.email||"";
+//                if(email){
+//                    $("#log-re").hide();
+//                    $("#email").text(email);
+//                    $("#exit").show();
+//                }else{
+//                    $("#exit").hide();
+//                    $("#log-re").show();
+//                }
                 //拿到数据并填充
                 let types="";
                 let articles=""
@@ -213,7 +213,7 @@
                             <span><a class="blog-color">${item.cat_id.cat_name}</a></span>
                             <span>${item.create_date}</span>
                             <h1><a href="">${item.title}</a></h1>
-                             <p>${item.description}</p>
+                             <p style="height: 100px;overflow: hidden">${item.description}</p>
                             <p><a href="" class="blog-continue">continue reading</a></p>
                             </div>
                             </article>`;
