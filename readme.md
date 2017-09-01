@@ -30,7 +30,13 @@ $ mongod --dbpath="文件db的路径"
     ```
     localhost:3000
     ```
-
++ 查看前台你页面需要修改一些内容
+- 修改文件路径：MyProject/routes/api/api.js
+- 修改内容（将跨域端口号修改成您自己的端口号）：
+```
+ res.header("Access-Control-Allow-Origin", 'http://localhost:63342');//第25行
+ res.header("Access-Control-Allow-Origin", 'http://localhost:您自己的端口号')
+```
 
 
 # 后台主要功能
@@ -51,6 +57,7 @@ $ mongod --dbpath="文件db的路径"
 
 # 前台web
 + 首页
+    - 可以获得后台数据并渲染出来
 + 注册、登录
 
 ## 这个Demo主要是用来巩固日常所学，功能简陋让各位见笑了
