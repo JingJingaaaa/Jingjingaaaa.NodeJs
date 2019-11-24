@@ -1,0 +1,104 @@
+<%- include header.ejs %>
+<%- include left_nav.ejs %>
+
+ <div id="dcMain">
+    
+<div id="urHere">客户关系管理中心<b>></b><strong>客户管理</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+            <h3><a href="/admin/articles" class="actionBtn">客户列表</a>添加客户</h3>
+    <form action="article.php?rec=insert" method="post" enctype="multipart/form-data">
+     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+      <tr>
+       <td width="90" align="right">客户名称</td>
+       <td>
+        <input type="text" name="title" value="" size="80" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">客户星级</td>
+       <td>
+        <select name="cat_id">
+            <option value="0">未分类</option>
+            <% for(var j=0;j<categoryA.length;j++){ %>
+            <option  value='<%= categoryA[j]._id %>'><%= categoryA[j].cat_name %></option>
+            <% } %>
+         </select>
+       </td>
+      </tr>
+      <tr>
+         <td align="right">客户地址</td>
+         <td>
+             <textarea name="address" cols="60" rows="4" class="textArea"></textarea>
+         </td>
+      </tr>
+      <tr>
+         <td align="right">联系电话</td>
+         <td>
+            <input type="tel" name="tel" value="" size="50" class="inpMain" />
+         </td>
+      </tr>
+      <tr>
+          <td align="right">主营产品</td>
+          <td>
+            <textarea name="description"  cols="60" rows="4" class="textArea"></textarea>
+          </td>
+          </td>
+      </tr>
+      <tr>
+       <td></td>
+       <td>
+        <input type="hidden" name="token" value="7e4a88fb" />
+        <input type="hidden" name="image" value="">
+        <input type="hidden" name="id" value="">
+        <input id="submit" name="submit" class="btn" type="button" value="提交" />
+       </td>
+      </tr>
+     </table>
+    </form>
+       </div>
+ </div>
+ <div class="clear"></div>
+<div id="dcFooter">
+ <div id="footer">
+  <div class="line"></div>
+  <ul>
+      版权所有 © 客户关系管理系统，并保留所有权利。
+  </ul>
+ </div>
+</div>  
+<div class="clear"></div> </div>
+ <script type="text/javascript">
+ 
+ onload = function()
+ {
+   document.forms['action'].reset();
+ }
+
+ function douAction()
+ {
+     var frm = document.forms['action'];
+
+     frm.elements['new_cat_id'].style.display = frm.elements['action'].value == 'category_move' ? '' : 'none';
+ }
+// $(function () {
+
+     $('#submit').click(function () {
+
+         $.ajax({
+             url: '/admin/articlesAdd',
+             type: 'POST',
+             data: $('form').serialize(),
+             success: function (res) {
+                 if(res.status == 0){
+                     location.href='/admin/articles';
+                 }else{
+                     alert(res.msg)
+                 }
+             },
+             error: function (err) {
+                 throw err;
+             }
+         })
+     })
+// })
+ </script>
+<%- include footer.ejs %>

@@ -1,0 +1,35 @@
+<%- include header.ejs %>
+<%- include left_nav.ejs %>
+ <div id="dcMain">
+    
+<div id="urHere">客户关系管理中心<b>></b><strong>网站管理员</strong> </div>   <div id="manager" class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+    <h3><a href="/admin/managerAdd" class="actionBtn">添加管理员</a>网站管理员</h3>
+        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+     <tr>
+      <th width="30" align="center">编号</th>
+      <th align="left">管理员名称</th>
+      <th align="center">添加时间</th>
+      <th align="center">操作</th>
+     </tr>
+     <% for(var i=0;i<managers.length;i++){ %>
+         <tr>
+          <td align="center"><%= i+1 %></td>
+          <td><%= managers[i].username %></td>
+          <td align="center"><%= managers[i].create_date %></td>
+          <td align="center"><a href="/admin/Medit?_id=<%= managers[i]._id %>">编辑</a> | <a href="/admin/Mdelete?username=<%= managers[i].username %>">删除</a></td>
+         </tr>
+    <% } %>
+         </table>
+      </div>
+ </div>
+ <div class="clear"></div>
+<div id="dcFooter">
+ <div id="footer">
+  <div class="line"></div>
+  <ul>
+      版权所有 © 客户关系管理系统，并保留所有权利。
+  </ul>
+ </div>
+</div>  
+<div class="clear"></div> </div>
+<%- include footer.ejs %>

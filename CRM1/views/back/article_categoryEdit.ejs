@@ -1,0 +1,85 @@
+<%- include header.ejs %>
+<%- include left_nav.ejs %>
+ <div id="dcMain">
+    
+<div id="urHere">客户关系管理中心<b>></b><strong>客户分类</strong> </div>
+  <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+   <h3><a href="/admin/categoryA" class="actionBtn">客户分类</a>添加分类</h3>
+    <form action="" method="post">
+     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+      <tr>
+       <td width="80" align="right">分类名称</td>
+       <td>
+        <input id="cat_name" type="text" name="cat_name" value="<%= categoryA.cat_name %>" size="40" class="inpMain"  />
+        <input id="_id" name="_id" type="hidden" value="<%= categoryA._id %>">
+       </td>
+      </tr>
+      <tr>
+       <td align="right">备注</td>
+       <td>
+        <input id="unique_id" type="text" name="unique_id" value="<%= categoryA.unique_id %>" size="40" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">简单描述</td>
+       <td>
+        <textarea id="description" name="description" cols="60" rows="4" class="textArea"><%= categoryA.description %></textarea>
+       </td>
+      </tr>
+      <tr>
+       <td align="right">排序</td>
+       <td>
+        <input id="sort" type="text" name="sort" value="<%= categoryA.sort %>" size="5" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td></td>
+       <td>
+        <input type="hidden" name="token" value="25bfda40" />
+        <input type="hidden" name="cat_id" value="" />
+        <input id="submit" name="submit" class="btn" type="button" value="提交" />
+       </td>
+      </tr>
+     </table>
+    </form>
+       </div>
+ </div>
+ <div class="clear"></div>
+<div id="dcFooter">
+ <div id="footer">
+  <div class="line"></div>
+  <ul>
+   版权所有 © 客户关系管理系统，并保留所有权利。
+  </ul>
+ </div>
+</div>  
+<div class="clear"></div>
+<script>
+ $(function () {
+  $('#submit').click(function (e) {
+   e.preventDefault();
+   $.ajax({
+    url: '/admin/ACedit',
+    type: 'POST',
+    data: {
+     _id:$('#_id').val(),
+     cat_name:$('#cat_name').val(),
+     unique_id:$('#unique_id').val(),
+     sort:$('#sort').val(),
+     description: $('#description').val()
+    },
+    success: function (res) {
+     if(res.status == 0){
+      location.href='/admin/categoryA';
+     }else{
+      alert(res.msg)
+     }
+    },
+    error: function (err) {
+     throw err;
+    }
+   })
+  })
+ })
+</script>
+<%- include footer.ejs %>

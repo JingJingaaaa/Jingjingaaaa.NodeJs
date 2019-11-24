@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>客户关系管理中心</title>
+    <meta name="Copyright" content="Douco Design." />
+    <!--<link href="/css/public.css" rel="stylesheet" type="text/css">-->
+    <link href="/css/login.css" rel="stylesheet" type="text/css">
+    <link href="/css/animate.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript">
+    </script>
+</head>
+<body>
+    <div class="content">
+        <div class="mod-login animated bounceInLeft">
+            <div class="header">
+                <span class="sign">SIGN IN</span>
+            </div>
+            <br>
+            <div class="login">
+                <form action="" method="post">
+                    <span class="title">USERNAME</span>
+                    <input  id="u" name="username" type="text" placeholder="username">
+                    <span class="title">PASSWORD</span>
+                    <input  id="p" name="password" type="password"  placeholder="password">
+                    <input id="submit" type="button" name="submit" value="登录">
+                </form>
+            </div>
+        </div>
+    </div>
+<!--<div id="login">-->
+    <!--<div class="title">客户关系管理系统</div>-->
+    <!--<form action="" method="post">-->
+        <!--<ul>-->
+            <!--<li class="inpLi"><b>用户名：</b><input id="u" name="username" type="text" class="inpLogin" ></li>-->
+            <!--<li class="inpLi"><b>密码：</b><input id="p" name="password" type="password" class="inpLogin" ></li>-->
+            <!--<li class="sub"><input id="submit" type="button" name="submit" class="btn" value="登录"></li>-->
+            <!--<li class="action"><a href="#">忘记密码？</a> <em class="separator">|</em> <a href='#'>返回首页</a></li>-->
+        <!--</ul>-->
+    <!--</form>-->
+<!--</div>-->
+<script>
+    $(function(){
+        $('#submit').click(function () {
+            console.log('------------------------')
+            $.ajax({
+                url: "/admin/login",
+                type: "POST",
+                data: $('form').serialize(),
+                success: function (res) {
+                    if(res.status == 0) {
+                        alert(res.msg)
+                        location.href ="/admin"
+                    }else{
+                        alert(res.msg)
+                    }
+                },
+                error: function (err) {
+                    throw err
+                }
+            })
+        })
+    })
+</script>
+
+</body>
+</html>

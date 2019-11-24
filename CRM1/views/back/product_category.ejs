@@ -1,0 +1,39 @@
+<%- include header.ejs %>
+<%- include left_nav.ejs %>
+
+ <div id="dcMain">
+    
+<div id="urHere">客户关系管理中心<b>></b><strong>销售信息</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+        <h3><a href="/admin/categoryPAdd" class="actionBtn add">添加</a>销售信息</h3>
+        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+            <tr>
+                <th width="120" align="left">联系人</th>
+                <th align="left">客户量</th>
+                <th align="left">所属部门</th>
+                <th width="60" align="center">销售业绩</th>
+                <th width="80" align="center">操作</th>
+            </tr>
+            <% for(var i=0;i<categoryP.length;i++){ %>
+            <tr>
+                <td align="left"> <a href=""><%= categoryP[i].cat_name %></a></td>
+                <td><%= categoryP[i].unique_id %></td>
+                <td><%= categoryP[i].description %></td>
+                <td align="center"><%= categoryP[i].sort %></td>
+                <td align="center"><a href="/admin/PCedit/?_id=<%= categoryP[i]._id %>">编辑</a> | <a href="/admin/PCdelete/?cat_name=<%= categoryP[i].cat_name %>">删除</a></td>
+            </tr>
+            <% } %>
+        </table>
+</div>
+</div>
+ <div class="clear"></div>
+<div id="dcFooter">
+ <div id="footer">
+  <div class="line"></div>
+  <ul>
+      版权所有 © 客户关系管理系统，并保留所有权利。
+  </ul>
+ </div>
+</div>  
+<div class="clear"></div>
+
+<%- include footer.ejs %>

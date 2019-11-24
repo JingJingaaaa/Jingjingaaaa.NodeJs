@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <title>仙女棒后台 管理中心</title>
+ <meta name="Copyright" content="Douco Design." />
+ <link href="/css/public.css" rel="stylesheet" type="text/css">
+ <script type="text/javascript" src="/js/jquery.min.js"></script>
+ <script type="text/javascript" src="/js/global.js"></script>
+ <style>
+  #menu li:hover{
+   background: #60BBFF;
+  }
+ </style>
+</head>
+<body>
+<div id="dcWrap"> <div id="dcHead">
+  <div id="head">
+   <div class="logo" style="color: #fff;font-size: 16px ;padding-top:5px">客户关系后台管理</div>
+   <div class="nav">
+    <ul>
+     <li class="M"><a href="JavaScript:void(0);" class="topAdd">新建</a>
+      <div class="drop mTopad"><a href="/admin/productsAdd">商品</a> <a href="/admin/articlesAdd">文章</a> <a href="/admin/navs">自定义导航</a> <a href="show.html">首页幻灯</a> <a href="page.php?rec=add">单页面</a> <a href="/admin/managerAdd">管理员</a> <a href="link.html"></a> </div>
+     </li>
+     <li><a href="#" target="_blank">返回前台页面</a></li>
+     <li><a href="#">清除缓存</a></li>
+     <li><a href="http://www.mycodes.net" target="_blank">帮助</a></li>
+    </ul>
+    <ul class="navRight">
+     <li class="M noLeft"><a href="JavaScript:void(0);">您好，hyj</a>
+      <div class="drop mUser">
+       <a href="manager.php?rec=edit&id=1">编辑我的个人资料</a>
+       <a href="manager.php?rec=cloud_account">设置云账户</a>
+      </div>
+     </li>
+     <li class="noRight"><a href="/admin/login">退出</a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div id="dcLeft"><div id="menu">
+   <ul class="top">
+    <li><a href="/admin"><i class="home"></i><em>管理首页</em></a></li>
+   </ul>
+   <ul>
+    <li><a href="/admin/navs"><i class="nav"></i><em>自定义导航栏</em></a></li>
+    <li><a href="/admin/page"><i class="page"></i><em>单页面管理</em></a></li>
+   </ul>
+   <ul>
+    <li><a href="/admin/categoryP"><i class="productCat"></i><em>商品分类</em></a></li>
+    <li><a href="/admin/products"><i class="product"></i><em>商品列表</em></a></li>
+   </ul>
+   <ul>
+    <li><a href="/admin/categoryA"><i class="articleCat"></i><em>文章分类</em></a></li>
+    <li><a href="/admin/articles"><i class="article"></i><em>文章列表</em></a></li>
+   </ul>
+   <ul class="bot">
+    <li><a href="/admin/manager"><i class="manager"></i><em>网站管理员</em></a></li>
+    &lt;!&ndash;<li><a href="/manager.php?rec=manager_log"><i class="managerLog"></i><em>操作记录</em></a></li>&ndash;&gt;
+   </ul>
+  </div></div>
+
+<div id="dcMain">
+ &lt;!&ndash; 当前位置 &ndash;&gt;
+ <div id="urHere">客户关系管理中心</div>  <div id="index" class="mainBox" style="padding-top:18px;height:auto!important;height:550px;min-height:550px;">
+  <div id="douApi"></div>
+  <div class="indexBox">
+   <div class="boxTitle">单页面快速管理</div>
+   <ul class="ipage">
+
+    <a href="page.php?rec=edit&id=1">公司简介</a>
+
+    <a href="page.php?rec=edit&id=2" class="child1">企业荣誉</a>
+
+    <a href="page.php?rec=edit&id=3" class="child1">发展历程</a>
+
+    <a href="page.php?rec=edit&id=4" class="child1">联系我们</a>
+
+    <a href="page.php?rec=edit&id=5">人才招聘</a>
+
+    <a href="page.php?rec=edit&id=6">营销网络</a>
+    <div class="clear"></div>
+   </ul>
+  </div>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="indexBoxTwo">
+   <tr>
+    <td width="65%" valign="top" class="pr">
+     <div class="indexBox">
+      <div class="boxTitle">网站基本信息</div>
+      <ul>
+       <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
+        <tr>
+         <td width="120">单页面数：</td>
+         <td><strong>6</strong></td>
+         <td width="100">文章总数：</td>
+         <td><strong>10</strong></td>
+        </tr>
+        <tr>
+         <td>商品总数：</td>
+         <td><strong>15</strong></td>
+         <td>系统语言：</td>
+         <td><strong>zh_cn</strong></td>
+        </tr>
+        <tr>
+         <td>URL 重写：</td>
+         <td><strong>关闭<a href="system.php" class="cueRed ml">（点击开启）</a>
+          </strong></td>
+         <td>编码：</td>
+         <td><strong>UTF-8</strong></td>
+        </tr>
+        <tr>
+         <td>站点地图：</td>
+         <td><strong>开启</strong></td>
+         <td>站点模板：</td>
+         <td><strong>default</strong></td>
+        </tr>
+        <tr>
+         <td>DouPHP版本：</td>
+         <td><strong>v1.3 Release 20160125</strong></td>
+         <td>安装日期：</td>
+         <td><strong>2017-07-25</strong></td>
+        </tr>
+       </table>
+      </ul>
+     </div>
+    </td>
+    <td valign="top" class="pl">
+     <div class="indexBox">
+      <div class="boxTitle">管理员  登录记录</div>
+      <ul>
+       <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
+        <tr>
+         <th width="45%">IP地址</th>
+         <th width="55%">操作时间</th>
+        </tr>
+        <tr>
+         <td align="center">127.0.0.1</td>
+         <td align="center">2017-07-25 23:29:08</td>
+        </tr>
+        <tr>
+         <td align="center">127.0.0.1</td>
+         <td align="center">2016-07-26 13:48:48</td>
+        </tr>
+        <tr>
+         <td align="center">127.0.0.1</td>
+         <td align="center">2017-8-16 09:43:01</td>
+        </tr>
+
+       </table>
+      </ul>
+     </div>
+    </td>
+   </tr>
+  </table>
+ </div>
+</div>
+<div class="clear"></div>
+<div id="dcFooter">
+ <div id="footer">
+  <div class="line"></div>
+  <ul>
+   版权所有 © 2013-2015 漳州豆壳网络科技有限公司，并保留所有权利。
+  </ul>
+ </div>
+</div>&lt;!&ndash; dcFooter 结束 &ndash;&gt;
+<div class="clear"></div> </div>
+<script src="http://www.mycodes.net/js/tongji.js"></script>
+<script src="http://www.mycodes.net/js/youxia.js" type="text/javascript"></script>
+
+</body>
+</html>

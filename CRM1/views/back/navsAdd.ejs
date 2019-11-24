@@ -1,0 +1,77 @@
+<%- include header.ejs %>
+<%- include left_nav.ejs %>
+ <div id="dcMain">
+    
+    <div id="urHere">客户关系后台管理中心<b>></b><strong>自定义导航栏</strong> </div>
+     <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+        <h3><a href="/admin/navs" class="actionBtn">返回列表</a>自定义导航栏</h3>
+    <!--<script type="text/javascript">-->
+     <!--$(function(){ $(".idTabs").idTabs(); });-->
+    <!--</script>-->
+    <div class="idTabs">
+      <ul class="tab">
+        <li><a href="#nav_add">添加公告内容</a></li>
+      </ul>
+      <div class="items">
+        <div id="nav_add">
+         <form method="post">
+          <table width="100%" border="0" cellpadding="5" cellspacing="1" class="tableBasic">
+           <tr>
+            <td width="80" height="35" align="right">公告名称</td>
+            <td>
+             <input type="text" id="nav_name" name="title" value="" size="40" class="inpMain" />
+            </td>
+           </tr>
+           <tr>
+            <td height="35" align="right" name="content">内容</td>
+            <td>
+                <textarea name="content" cols="60" rows="4" class="textArea"></textarea>
+            </td>
+           </tr>
+           <tr>
+            <td></td>
+            <td>
+             <input type="hidden" name="token" value="30fa081a" />
+                <input  id="submit" name="submit" class="btn" type="button" value="提交" />
+            </td>
+           </tr>
+         </table>
+        </form>
+        </div>
+      </div>
+    </div>
+    </div>
+ </div>
+<div class="clear"></div>
+<div id="dcFooter">
+<div id="footer">
+<div class="line"></div>
+<ul>
+版权所有 © 客户关系管理系统，并保留所有权利。
+</ul>
+</div>
+</div>  
+<div class="clear"></div> </div>
+<script>
+    $(function () {
+        $('#submit').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: '/admin/navsAdd',
+                type: 'POST',
+                data: $('form').serialize(),
+                success: function (res) {
+                    if(res.status == 0){
+                        location.href='/admin/navs';
+                    }else{
+                        alert(res.msg)
+                    }
+                },
+                error: function (err) {
+                    throw err;
+                }
+            })
+        })
+    })
+</script>
+<%- include footer.ejs %>

@@ -1,0 +1,123 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+html, body, .content {
+    height: 100%;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    background: url(../images/login_btm.png) right bottom no-repeat;
+    position: relative;
+    background-size: contain;
+}
+
+.mod-login {
+    width: 410px;
+    height: 530px;
+    box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, .7);
+    background: url(../images/loginBg.jpg) center center no-repeat ;
+    background-size: cover;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    margin: -265px 0 0 -205px;
+    display: inline;
+    box-sizing: border-box;
+    padding: 70px 50px;
+    color: #fff;
+}
+
+
+.header {
+    margin-bottom: 35px;
+}
+
+.sign {
+    font-size: 20px;
+    font-weight: 500;
+    padding-bottom: 8px;
+    border-bottom: solid 2px #ff5600;
+    margin-left: 14px;
+}
+
+.title {
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0.6;
+    padding-left: 14px;
+}
+
+.header div {
+    float: left;
+    color: #fff;
+    font-family: "Exo", sans-serif;
+    font-size: 35px;
+    font-weight: 200;
+}
+
+.header div span {
+    color: #5379fa !important;
+}
+
+.login input {
+    width: 100%;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    color: #fff;
+    font-family: "Exo", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding-left: 14px;
+    border: none;
+    margin: 5px 0 30px;
+    box-sizing: border-box
+}
+
+.login input[type="button"] {
+    width: 100%;
+    height: 30px;
+    background: #ff5600;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    font-family: "Exo", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.bottom {
+    border-top: solid 1px rgba(255, 255, 255, 0.2);
+    margin-top: 50px;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.bottom a {
+    cursor: pointer;
+}
+
+.login input[type="button"]:hover {
+    opacity: 0.8;
+}
+
+.login input[type="button"]:active {
+    opacity: 0.6;
+}
+
+.login input[type="password"]:focus,
+.login input[type="text"]:focus {
+    outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.login input[type="button"]:focus {
+    outline: none;
+}
+
+::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}

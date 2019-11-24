@@ -1,0 +1,203 @@
+<%- include header.ejs %>
+<%- include left_nav.ejs %>
+ <div id="dcMain">
+    
+   <div id="urHere">客户关系管理中心</div>
+   <div id="index" class="mainBox" style="padding-top:18px;height:auto!important;height:550px;min-height:550px;">
+
+     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="indexBoxTwo">
+      <tr>
+       <td width="35%" valign="top" class="pr">
+        <div class="indexBox animated bounceInLeft">
+         <div class="boxTitle">客户信息</div>
+         <div id="mainPie" style="width:500px;height:300px;"></div>
+        </div>
+       </td>
+       <td valign="top" class="pl">
+        <div class="indexBox animated bounceInDown">
+         <div class="boxTitle">销售榜单</div>
+         <div id="mainBox" style="width:500px;height:300px;"></div>
+        </div>
+       </td>
+      </tr>
+
+     </table>
+     <div class="indexBoxTwo animated bounceInDown">
+      <div style="border-bottom: 1px solid #D7D7D7; color: #666666; font-size: 16px;padding-bottom: 10px; margin-bottom: 15px;" >公告信息</div>
+      <div  id="calendar" ></div>
+     </div>
+   </div>
+ </div>
+
+
+
+<div id="dcFooter">
+ <div id="footer">
+  <div class="line"></div>
+  <ul>
+   版权所有 © 客户关系管理系统，并保留所有权利。
+  </ul>
+ </div>
+</div>  
+<div class="clear"></div>
+<script type="text/javascript">
+ $(function () {
+   $.ajax({
+    url: '/admin/getDatas',
+    type: 'get',
+    success: function (res) {
+ console.log(res.navs)
+     let people = [];
+     let number = [];
+     let sales = [];
+     // 基于准备好的dom，初始化echarts实例(业绩表)
+     res.categoryP.map((index,i) => {
+       people.push(index.cat_name);
+       number.push(index.unique_id);
+       sales.push(index.sort);
+     })
+     var myChart = echarts.init(document.getElementById('mainBox'));
+     option = {
+      tooltip : {
+       trigger: 'axis',
+       axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+        type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+       }
+      },
+      legend: {
+       data: ['总销量', '客户数量']
+      },
+      grid: {
+       left: '3%',
+       right: '4%',
+       bottom: '3%',
+       containLabel: true
+      },
+      xAxis:  {
+       type: 'value'
+      },
+      yAxis: {
+       type: 'category',
+       data: people
+      },
+      series: [
+       {
+        name: '总销量',
+        type: 'bar',
+        stack: '总量',
+        label: {
+         normal: {
+          show: true,
+          position: 'insideRight'
+         }
+        },
+        data: sales
+       },
+       {
+        name: '客户数量',
+        type: 'bar',
+        stack: '总量',
+        label: {
+         normal: {
+          show: true,
+          position: 'insideleft'
+         }
+        },
+        data: number
+       },
+      ]
+     };
+     myChart.setOption(option);
+// 饼状图
+     let obj={};
+     res.articles.map((index,i) => {
+      if(!obj[index.cat_id.cat_name]) {
+        obj[index.cat_id.cat_name] = 1;
+      }else{
+       obj[index.cat_id.cat_name] += 1;
+      }
+     })
+     let arr = [];
+     for (var i in obj) {
+      arr.push({
+        value:obj[i],
+        name:i
+      });
+     }
+     console.log(arr)
+     // 绘制客户分类占比图
+     var myPie = echarts.init(document.getElementById('mainPie'));
+     option = {
+      backgroundColor: '#2c343c',
+
+      title: {
+       text: '客户分类Pie',
+       left: 'center',
+       top: 20,
+       textStyle: {
+        color: '#ccc'
+       }
+      },
+      tooltip : {
+       trigger: 'item',
+       formatter: "{a} <br/>{b} : {c} ({d}%)"
+      },
+      series : [
+       {
+        name:'客户占比',
+        type:'pie',
+        radius : '55%',
+        center: ['50%', '50%'],
+        data:arr.sort(function (a, b) { return a.value - b.value; }),
+        roseType: 'radius',
+        label: {
+         normal: {
+          textStyle: {
+           color: 'rgba(255, 255, 255, 0.3)'
+          }
+         }
+        },
+        labelLine: {
+         normal: {
+          lineStyle: {
+           color: 'rgba(255, 255, 255, 0.3)'
+          },
+          smooth: 0.2,
+          length: 10,
+          length2: 20
+         }
+        },
+        itemStyle: {
+         normal: {
+          color: '#fd7e88',
+          shadowBlur: 200,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+         }
+        },
+        animationType: 'scale',
+        animationEasing: 'elasticOut',
+        animationDelay: function (idx) {
+         return Math.random() * 200;
+        }
+       }
+      ]
+     };
+     myPie.setOption(option);
+
+     var str = '';
+     $.each(res.navs, function (index, item) {
+
+      str += "<tr>" +
+              "<td align='left'> " + item.title + "</td> </tr>"
+     })
+     $("#calendar").html(str);
+
+    },
+    error: function (err) {
+     throw err;
+    }
+   })
+ })
+
+</script>
+<%- include footer.ejs %>
