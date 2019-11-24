@@ -312,9 +312,10 @@ router.get('/ACedit', (req, res) => {
 router.get('/articles', function(req, res) {
     let start=req.query.start-0;
     Articles.find().count().then(n=> {
-        Articles.find().populate("cat_id", "cat_name").skip(start).limit(5).then(result => {
+        console.log('n', n)
+        Articles.find().skip(start).limit(5).then(result => {
             if (result) {
-                console.log(result)
+                console.log('11111',result)
                 CategoryA.find().then(r=> {
                     res.render('back/articles', {
                         categoryA: r,
@@ -412,7 +413,7 @@ router.post("/MoveType",(req,res)=>{
     let type = req.body.type;
     let arr=strID.split(",");
     for(var i=0;i<arr.length;i++) {
-        Articles.update({_id:arr[i]}, {cat_id:type})
+        Articles.update({_id:arr[i]}, {leader:type})
             .then(result => {
                 if (result) {
                     res.json({
@@ -439,16 +440,19 @@ router.get('/Adelete', (req, res) => {
 });
 //我的客户添加功能
 router.post('/articlesAdd', function(req, res) {
-    console.log(req.body);
+    console.log('000000', req.body);
     let info=req.body;
     let obj={
         aID:info.aID,
         title:info.title,
+        leader: info.leader,
         cat_id:info.cat_id,
         address:info.address,
         tel:info.tel,
         create_date:info.create_date,
-        description:info.description
+        description:info.description,
+        cooperativeCustomer:info.cooperativeCustomer,
+        customerBrief:info.customerBrief,
     };
     Articles.findOne({title:info.title})
         .then(result=>{//将结果返回
@@ -478,13 +482,27 @@ router.post('/articlesAdd', function(req, res) {
 router.post('/Asearch', function(req, res) {
     let sel = req.body.sel;
     Articles.find({
-        cat_id: sel
-    }).populate('cat_id','cat_name').then(result => {
+        leader: sel,
+    }).then(result => {
+        console.log('result', result, Articles, Articles.find())
         res.json({
             data: result
         })
     })
 });
+//我的客户搜索功能
+router.post('/AsearchGroup', function(req, res) {
+    let selGroup = req.body.selGroup;
+    Articles.find({
+        address: selGroup,
+    }).then(result => {
+        console.log('result', result, Articles, Articles.find())
+        res.json({
+            data: result
+        })
+    })
+});
+
 //我的客户批量删除
 router.post('/AllDelete', (req, res) => {
     let str = req.body.arrDel;

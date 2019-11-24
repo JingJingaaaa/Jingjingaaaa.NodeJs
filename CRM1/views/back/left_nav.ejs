@@ -7,13 +7,14 @@
             <li  class="animated bounceInUp light"><a href="/admin/navs"><i class="nav"></i><em>自定义公告栏</em></a></li>
         </ul>
         <ul>
+            <li  class="animated bounceInUp light"><a href="/admin/articles"><i class="article"></i><em>客户管理</em></a></li>
+            <li  class="animated bounceInUp light"><a href="/admin/categoryA"><i class="articleCat"></i><em>客户分类</em></a></li>
+        </ul>
+        <ul>
             <li  class="animated bounceInUp light"><a href="/admin/categoryP"><i class="productCat"></i><em>销售信息</em></a></li>
             <li  class="animated bounceInUp light"><a href="/admin/products"><i class="product"></i><em>销售管理</em></a></li>
         </ul>
-        <ul>
-            <li  class="animated bounceInUp light"><a href="/admin/categoryA"><i class="articleCat"></i><em>客户分类</em></a></li>
-            <li  class="animated bounceInUp light"><a href="/admin/articles"><i class="article"></i><em>客户管理</em></a></li>
-        </ul>
+        
         <ul class="bot">
             <li  class="animated bounceInUp light "><a href="/admin/manager"><i class="manager"></i><em class="message">网站管理员</em></a></li>
         </ul>
@@ -26,7 +27,7 @@
             type: 'get',
             success: function (res) {
                 console.log(res.name)
-                $("#names").html('您好！，'+ res.name);
+                $("#names").html('Hello，'+ res.name);
                 if(res.name.indexOf("admin") === -1){
                     $('.bot').hide();
                 }else{

@@ -2,10 +2,11 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>客户关系管理中心</title>
+    <title>West Ham United Foundation Project Management System</title>
     <meta name="Copyright" content="Douco Design." />
     <link href="/css/animate.css" rel="stylesheet" type="text/css">
     <link href="/css/public.css" rel="stylesheet" type="text/css">
+    <!-- <link rel="stylesheet" href="/css//bootstrap.min.css" type="text/css"> -->
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/global.js"></script>
     <script type="text/javascript" src="/js/echarts.min.js"></script>
@@ -38,7 +39,7 @@
                 type: 'get',
                 success: function (res) {
                     console.log(res.name)
-                    $("#names").html('您好！，'+ res.name);
+                    $("#names").html('Hello,'+ res.name);
                 },
                 error: function (err) {
                     console.log(err)
