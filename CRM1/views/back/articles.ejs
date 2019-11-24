@@ -38,7 +38,7 @@
       <th width="80"align="center">Cooperative Customer</th>
       <th align="center">Customer Brief</th>
       <th width="80" align="center">Add Date</th>
-      <th width="30" align="center">Operation</th>
+      <th width="30" align="center">Operate/th>
      </tr>
         <tbody id="wrap">
         <% for(var i=0;i<articles.length;i++){ %>
@@ -132,7 +132,7 @@
                              "<td align='center'> " + item.cooperativeCustomer + "</td> " +
                              "<td align='center'>" + item.customerBrief + '</td>' +
                              "<td align='center'> " + item.create_date + "</td> " +
-                             "<td align='center'><a href='/admin/Pdelete/?name= '+ res.data[index].name>删除</a> </td></tr>"
+                             "<td align='center'><a href='/admin/Pdelete/?name= '+ res.data[index].name>Delete</a> </td></tr>"
                  })
                  $("#wrap").html(str);
 

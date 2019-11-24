@@ -9,13 +9,13 @@
       <tr>
        <td width="35%" valign="top" class="pr">
         <div class="indexBox animated bounceInLeft">
-         <div class="boxTitle">客户信息</div>
+         <div class="boxTitle">Project information</div>
          <div id="mainPie" style="width:500px;height:300px;"></div>
         </div>
        </td>
        <td valign="top" class="pl">
         <div class="indexBox animated bounceInDown">
-         <div class="boxTitle">销售榜单</div>
+         <div class="boxTitle">TODO</div>
          <div id="mainBox" style="width:500px;height:300px;"></div>
         </div>
        </td>
@@ -23,7 +23,7 @@
 
      </table>
      <div class="indexBoxTwo animated bounceInDown">
-      <div style="border-bottom: 1px solid #D7D7D7; color: #666666; font-size: 16px;padding-bottom: 10px; margin-bottom: 15px;" >公告信息</div>
+      <div style="border-bottom: 1px solid #D7D7D7; color: #666666; font-size: 16px;padding-bottom: 10px; margin-bottom: 15px;" >Bulletin Board</div>
       <div  id="calendar" ></div>
      </div>
    </div>
@@ -46,7 +46,6 @@
     url: '/admin/getDatas',
     type: 'get',
     success: function (res) {
- console.log(res.navs)
      let people = [];
      let number = [];
      let sales = [];
@@ -65,7 +64,7 @@
        }
       },
       legend: {
-       data: ['总销量', '客户数量']
+       data: ['Total sales', 'number of clients']
       },
       grid: {
        left: '3%',
@@ -82,9 +81,9 @@
       },
       series: [
        {
-        name: '总销量',
+        name: 'Total sales',
         type: 'bar',
-        stack: '总量',
+        stack: 'Total amount',
         label: {
          normal: {
           show: true,
@@ -94,7 +93,7 @@
         data: sales
        },
        {
-        name: '客户数量',
+        name: 'number of clients',
         type: 'bar',
         stack: '总量',
         label: {
@@ -111,10 +110,10 @@
 // 饼状图
      let obj={};
      res.articles.map((index,i) => {
-      if(!obj[index.cat_id.cat_name]) {
-        obj[index.cat_id.cat_name] = 1;
+      if(!obj[index.leader]) {
+        obj[index.leader] = 1;
       }else{
-       obj[index.cat_id.cat_name] += 1;
+       obj[index.leader] += 1;
       }
      })
      let arr = [];
@@ -131,7 +130,7 @@
       backgroundColor: '#2c343c',
 
       title: {
-       text: '客户分类Pie',
+       text: 'Pie',
        left: 'center',
        top: 20,
        textStyle: {
@@ -144,7 +143,7 @@
       },
       series : [
        {
-        name:'客户占比',
+        name:'Proportion',
         type:'pie',
         radius : '55%',
         center: ['50%', '50%'],

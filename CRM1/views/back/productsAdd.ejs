@@ -3,26 +3,26 @@
 
  <div id="dcMain">
     
-<div id="urHere">Management System<b>></b><strong>销售管理</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
-            <h3><a href="/admin/products" class="actionBtn">销售管理</a>添加客户</h3>
+<div id="urHere">Management System<b>></b><strong>Customer Management</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+            <h3><a href="/admin/products" class="actionBtn">Customer Management</a>Add New</h3>
     <form action="product.php?rec=insert" method="post" enctype="multipart/form-data">
      <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
       <tr>
-       <td width="90" align="right">客户名称</td>
+       <td width="90" align="right">Client's name</td>
        <td>
            <select name="name">
-               <option value="0">-请选择-</option>
+               <option value="0">-Choose-</option>
                <% for(var i=0;i<articles.length;i++){ %>
-               <option  value='<%= articles[i]._id %>'><%= articles[i].title %></option>
+               <option  value='<%= articles[i]._id %>'><%= articles[i].cooperativeCustomer %></option>
                <% } %>
            </select>
        </td>
       </tr>
       <tr>
-       <td align="right">联系人</td>
+       <td align="right">Contact person</td>
        <td>
         <select name="cat_id">
-            <option value="0">未分类</option>
+            <option value="0">-Choose-</option>
             <% for(var j=0;j<categoryP.length;j++){ %>
             <option  value='<%= categoryP[j]._id %>'><%= categoryP[j].cat_name %></option>
             <% } %>
@@ -31,25 +31,25 @@
        </td>
       </tr>
       <tr>
-       <td align="right">商品价格</td>
+       <td align="right">Cooperation projects</td>
        <td>
         <input type="text" name="price" value="0" size="40" class="inpMain" />
        </td>
       </tr>
       <tr>
-       <td align="right">跟踪状态</td>
+       <td align="right">Tracking status</td>
        <td>
         <input type="text" name="theState" value="" size="50" class="inpMain" />
        </td>
       </tr>
      <tr>
-         <td align="right">订单量</td>
+         <td align="right">Order quantity</td>
          <td>
              <input type="text" name="num" value="0" size="40" class="inpMain" />
          </td>
      </tr>
       <tr>
-       <td align="right">简单描述</td>
+       <td align="right">Main business</td>
        <td>
         <input type="text" name="description" value="" size="50" class="inpMain" />
        </td>

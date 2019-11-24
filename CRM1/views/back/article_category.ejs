@@ -9,11 +9,12 @@
             <th width="120" align="left">Project leader</th>
             <th align="left">Project name</th>
             <th align="left">Progress description</th>
+            <th width="80" align="center">Operate</th>
           </tr>
             <% for(var i=0;i<categoryA.length;i++){ %>
               <tr>
-                <td align="left"> <a href=""><%= categoryA[i].cat_name %></a></td>
-                <td><%= categoryA[i].unique_id %></td>
+                <td align="left"> <a href=""><%= categoryA[i].cat_name.leader %></a></td>
+                <td><%= categoryA[i].unique_id.title %></td>
                 <td><%= categoryA[i].description %></td>
                 <td align="center"><a href="/admin/ACedit/?_id=<%= categoryA[i]._id %>">Edit</a> | <a href="/admin/ACdelete/?_id=<%= categoryA[i]._id %>">Delete</a></td>
               </tr>

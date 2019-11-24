@@ -8,15 +8,15 @@
      <tr>
       <th width="30" align="center">ID</th>
       <th align="left">Name</th>
-      <th align="center">添加时间</th>
-      <th align="center">操作</th>
+      <th align="center">Add Date</th>
+      <th align="center">Operate</th>
      </tr>
      <% for(var i=0;i<managers.length;i++){ %>
          <tr>
           <td align="center"><%= i+1 %></td>
           <td><%= managers[i].username %></td>
           <td align="center"><%= managers[i].create_date %></td>
-          <td align="center"><a href="/admin/Medit?_id=<%= managers[i]._id %>">编辑</a> | <a href="/admin/Mdelete?username=<%= managers[i].username %>">删除</a></td>
+          <td align="center"><a href="/admin/Medit?_id=<%= managers[i]._id %>">Edit</a> | <a href="/admin/Mdelete?username=<%= managers[i].username %>">Delete</a></td>
          </tr>
     <% } %>
          </table>

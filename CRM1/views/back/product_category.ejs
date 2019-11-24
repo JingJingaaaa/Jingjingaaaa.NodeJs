@@ -3,15 +3,15 @@
 
  <div id="dcMain">
     
-<div id="urHere">Management System<b>></b><strong>销售信息</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
-        <h3><a href="/admin/categoryPAdd" class="actionBtn add">添加</a>销售信息</h3>
+<div id="urHere">Management System<b>></b><strong>Others</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+        <h3><a href="/admin/categoryPAdd" class="actionBtn add">Add New</a>Others</h3>
         <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
             <tr>
-                <th width="120" align="left">联系人</th>
-                <th align="left">客户量</th>
-                <th align="left">所属部门</th>
-                <th width="60" align="center">销售业绩</th>
-                <th width="80" align="center">操作</th>
+                <th width="120" align="left">Contact person</th>
+                <th align="left">Customer volume</th>
+                <th align="left">Department</th>
+                <th width="60" align="center">ToDo</th>
+                <th width="80" align="center">Operate</th>
             </tr>
             <% for(var i=0;i<categoryP.length;i++){ %>
             <tr>
@@ -19,7 +19,7 @@
                 <td><%= categoryP[i].unique_id %></td>
                 <td><%= categoryP[i].description %></td>
                 <td align="center"><%= categoryP[i].sort %></td>
-                <td align="center"><a href="/admin/PCedit/?_id=<%= categoryP[i]._id %>">编辑</a> | <a href="/admin/PCdelete/?cat_name=<%= categoryP[i].cat_name %>">删除</a></td>
+                <td align="center"><a href="/admin/PCedit/?_id=<%= categoryP[i]._id %>">Edit</a> | <a href="/admin/PCdelete/?cat_name=<%= categoryP[i].cat_name %>">Delete</a></td>
             </tr>
             <% } %>
         </table>

@@ -3,19 +3,19 @@
 
  <div id="dcMain">
     
-<div id="urHere">Management System<b>></b><strong>销售管理</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
-        <h3><a href="/admin/productsAdd" class="actionBtn add">添加客户</a>销售管理</h3>
+<div id="urHere">Management System<b>></b><strong>Customer Management</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+        <h3><a href="/admin/productsAdd" class="actionBtn add">Add New</a>Customer Management</h3>
     <div class="filter">
     <form method="post" id="sel-form">
      <select name="cat_id" id="sel">
-         <option value="0" >未分类</option>
+         <option value="0" >-Choose-</option>
          <% for(var j=0;j<categoryP.length;j++){ %>
          <option  value='<%= categoryP[j]._id %>'><%= categoryP[j].cat_name %></option>
          <% } %>
 
      </select>
      <!--<input name="keyword" type="text" class="inpMain" value="" size="20" />-->
-     <input  id="select"  class="btnGray" type="submit" value="筛选联系人">
+     <input  id="select"  class="btnGray" type="submit" value="Filter">
     </form>
     </div>
         <div id="list">
@@ -23,13 +23,13 @@
     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic" id="table">
         <tr>
             <th width="22" align="center"><input name='chkall' type='checkbox' id='chkall' onclick='selectcheckbox(this.form)' value='check'></th>
-            <th width="40" align="center">编号</th>
-            <th align="left">客户名称</th>
-            <th width="80" align="center">联系人</th>
-            <th width="80" align="center">跟进状态</th>
-            <th width="80" align="center">订单量</th>
-            <th width="200" align="center">添加日期</th>
-            <th width="80" align="center">操作</th>
+            <th width="40" align="center">ID</th>
+            <th align="left">Client's name</th>
+            <th width="80" align="center">Contact person</th>
+            <th width="80" align="center">Tracking status</th>
+            <th width="80" align="center">Order quantity</th>
+            <th width="200" align="center">Add Date</th>
+            <th width="80" align="center">Operate</th>
         </tr>
         <tbody id="wrap">
         <% for(var i=0;i<products.length;i++){ %>
@@ -39,14 +39,14 @@
                 <input id="_id" name="_id" type="hidden" value="<%= products[i]._id %>" />
             </td>
             <td><a href="article.php?rec=edit&id=10"><%= i+1 %></a></td>
-            <td align="center"><%= products[i].name.title %></td>
+            <td align="center"><%= products[i].name.cooperativeCustomer %></td>
             <td class="type" align="center"><a href=""><%= products[i].cat_id.cat_name %></a></td>
             <td align="center"><%= products[i].theState %></td>
             <td align="center"><%= products[i].num %></td>
             <td align="center"><%= products[i].create_date %></td>
             <td align="center">
-                <!--<a href="/admin/Pedit/?_id=<%= products[i]._id %>">编辑</a> | -->
-                <a href="/admin/Pdelete/?_id=<%= products[i]._id  %>">删除</a>
+                <!--<a href="/admin/Pedit/?_id=<%= products[i]._id %>">Edit</a> | -->
+                <a href="/admin/Pdelete/?_id=<%= products[i]._id  %>">Delete</a>
             </td>
         </tr>
         <% } %>
@@ -54,12 +54,12 @@
     </table>
     <div class="action">
      <select name="action" onchange="douAction()">
-      <option value="0">请选择...</option>
-      <option value="del_all">删除</option>
-      <option value="category_move">移动客户至</option>
+      <option value="0">choose</option>
+      <option value="del_all">Delete</option>
+      <option value="category_move">Mobile customer to</option>
      </select>
      <select id="MoveType" name="new_cat_id" style="display:none">
-         <option value="0" >未分类</option>
+         <option value="0" >choose</option>
          <% for(var j=0;j<categoryP.length;j++){ %>
          <option value='<%= categoryP[j]._id %>'><%= categoryP[j].cat_name %></option>
          <% } %>
@@ -120,7 +120,7 @@ $(function () {
                           "<td align='center'> "+item.theState+ "</td> "+
                           "<td align='center'> "+item.num+ "</td> "+
                           "<td align='center'>"+ item.create_date+'</td>'+
-                          "<td align='center'><a href='/admin/Pdelete/?_id= '+ res.data[index]._id>删除</a> </td></tr>"
+                          "<td align='center'><a href='/admin/Pdelete/?_id= '+ res.data[index]._id>Delete</a> </td></tr>"
                 })
                 $("#wrap").html(str);
 

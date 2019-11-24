@@ -48,7 +48,7 @@ router.get('/username',function(req, res){
 router.get('/login', function(req, res) {
     res.render('back/login')
 });
-//管理员登录操作
+//管理员登录Operate
 router.post('/login', function(req, res){
     //接收Submit上来的数据
     let userInfo=req.body;
@@ -93,7 +93,7 @@ router.get('/navs', function(req, res) {
 router.get('/navsAdd', function(req, res) {
     res.render('back/navsAdd')
 });
-//公告添加操作
+//公告添加Operate
 router.post('/navsAdd', function(req, res) {
     console.log(req.body);
     let info=req.body;
@@ -126,7 +126,7 @@ router.post('/navsAdd', function(req, res) {
             }
         })
 });
-//公告删除操作
+//公告DeleteOperate
 router.get('/Ndelete', (req, res) => {
     let title = req.query.title;
     Navs.remove({title:title}).then((result=>{
@@ -149,7 +149,7 @@ router.get('/manager', function(req, res) {
 router.get('/managerAdd', function(req, res) {
     res.render('back/managerAdd')
 });
-//渲染管理员编辑页面/admin/managerAdd
+//渲染管理员Edit页面/admin/managerAdd
 router.get('/Medit', function(req, res) {
     let _id=req.query._id;//拿到id然后将id在CategoryA中查找，将结果返还出来
     Managers.findOne({_id:_id}).then(result => {
@@ -158,7 +158,7 @@ router.get('/Medit', function(req, res) {
         })
     });
 });
-//管理员添加操作
+//管理员添加Operate
 router.post('/managerAdd', function(req, res) {
     console.log(req.body);
     let info=req.body;
@@ -192,7 +192,7 @@ router.post('/managerAdd', function(req, res) {
             }
         })
 });
-//管理员删除操作
+//管理员DeleteOperate
 router.get('/Mdelete', (req, res) => {
     let username = req.query.username;
     Managers.remove({username:username}).then((result=>{
@@ -201,7 +201,7 @@ router.get('/Mdelete', (req, res) => {
         }
     }))
 });
-//管理员编辑操作
+//管理员EditOperate
 router.post('/Medit', (req, res) => {
     let obj = {
         username: req.body.username,
@@ -225,7 +225,7 @@ router.post('/Medit', (req, res) => {
 });
 
 
-//渲染销售管理列表页面/admin/categoryP
+//渲染客户管理列表页面/admin/categoryP
 router.get('/categoryP', function(req, res) {
     CategoryP.find().then(result => {
         if(result){
@@ -236,11 +236,11 @@ router.get('/categoryP', function(req, res) {
         }
     })
 });
-//渲染销售管理添加页面/admin/categoryPAdd
+//渲染客户管理添加页面/admin/categoryPAdd
 router.get('/categoryPAdd', function(req, res) {
     res.render('back/product_categoryAdd')
 });
-//渲染销售管理编辑页面/admin/PCedit
+//渲染客户管理Edit页面/admin/PCedit
 router.get('/PCedit', (req, res) => {
     let _id=req.query._id;//拿到id然后将id在CategoryP中查找，将结果返还出来
     CategoryP.findOne({_id:_id}).then(result => {
@@ -254,7 +254,7 @@ router.get('/PCedit', (req, res) => {
 router.get('/products', function(req, res) {
     let start=req.query.start-0;
     Products.find().count().then(n=>{
-        Products.find().populate("cat_id","cat_name").populate("name","title").skip(start).limit(5).then(result => {
+        Products.find().populate("cat_id","cat_name").populate("name","cooperativeCustomer").skip(start).limit(5).then(result => {
             if(result){
                 CategoryP.find().then(r=>{
                     res.render('back/products',{
@@ -285,23 +285,27 @@ router.get('/productsAdd', function(req, res) {
 
 //渲染项目进程列表页面/admin/categoryA
 router.get('/categoryA', function(req, res) {
-    CategoryA.find().then(result => {
+    CategoryA.find().populate("cat_name","leader").populate("unique_id","title").then(result => {
         if(result){
             res.render('back/article_category',{
                 categoryA: result
-
             })
         }
     })
 });
 //渲染项目进程添加页面/admin/categoryAAdd
 router.get('/categoryAAdd', function(req, res) {
-    res.render('back/article_categoryAdd')
+    Articles.find().then(r => {
+        res.render('back/article_categoryAdd',{
+            articles:r
+        })
+    })
+   
 });
-//渲染项目进程编辑页面/admin/ACedit
+//渲染项目进程Edit页面/admin/ACedit
 router.get('/ACedit', (req, res) => {
     let _id=req.query._id;//拿到id然后将id在CategoryA中查找，将结果返还出来
-    CategoryA.findOne({_id:_id}).then(result => {
+    CategoryA.findOne({_id:_id}).populate("cat_name","leader").populate("unique_id","title").then(result => {
         console.log(result)
         res.render('back/article_categoryEdit',{
             categoryA: result
@@ -345,35 +349,23 @@ router.post('/categoryAAdd', function(req, res) {
         description:info.description,
         sort:info.sort - 0
     };
-    //console.log(obj);
-    CategoryA
-        .findOne({cat_name:obj.cat_name})
-        .then(result=>{//将结果返回
-            console.log(result);
-            if(result){//判断是查找到
-                res.json({
-                    status:1,
-                    msg:"The person in charge already exists"
-                })
-            }else{
-                CategoryA.create(obj)
-                    .then(result=>{
-                    if(result){
-                        res.json({
-                            status:0,
-                            msg:'Created successfully'
-                        })
-                    }else{
-                        res.json({
-                            status:1,
-                            msg:'Creation failed, please try again later'
-                        })
-                    }
-                })
-            }
-        })
+    CategoryA.create(obj)
+        .then(result=>{
+        if(result){
+            res.json({
+                status:0,
+                msg:'Created successfully'
+            })
+        }else{
+            res.json({
+                status:1,
+                msg:'Creation failed, please try again later'
+            })
+        }
+    })
+           
 });
-//项目进程删除功能
+//项目进程Delete功能
 router.get('/ACdelete', (req, res) => {
     let _id = req.query._id;
     CategoryA.remove({_id:_id}).then((result=>{
@@ -382,7 +374,7 @@ router.get('/ACdelete', (req, res) => {
         }
     }))
 });
-//项目进程编辑功能
+//项目进程Edit功能
 router.post('/ACedit', (req, res) => {
     let obj = {
         cat_name: req.body.cat_name,
@@ -428,7 +420,7 @@ router.post("/MoveType",(req,res)=>{
             })
     }
 });
-//项目管理删除功能
+//项目管理Delete功能
 router.get('/Adelete', (req, res) => {
     let title = req.query.title;
     Articles.remove({title:title}).then((result=>{
@@ -490,7 +482,7 @@ router.post('/Asearch', function(req, res) {
     })
 });
 
-//项目管理批量删除
+//项目管理批量Delete
 router.post('/AllDelete', (req, res) => {
     let str = req.body.arrDel;
     let arr=str.split(",");
@@ -514,7 +506,7 @@ router.post('/AllDelete', (req, res) => {
 });
 
 
-//销售管理分类移动功能
+//客户管理分类移动功能
 router.post("/MoveTypeP",(req,res)=>{
     let strID = req.body.strID;
     let type = req.body.type;
@@ -536,7 +528,7 @@ router.post("/MoveTypeP",(req,res)=>{
             })
     }
 });
-//销售管理分类编辑功能
+//客户管理分类Edit功能
 router.post('/PCedit', (req, res) => {
     let obj = {
         cat_name: req.body.cat_name,
@@ -560,7 +552,7 @@ router.post('/PCedit', (req, res) => {
             }
         })
 });
-//销售管理分类删除功能
+//客户管理分类Delete功能
 router.get('/PCdelete', (req, res) => {
     let cat_name = req.query.cat_name;
     CategoryP.remove({cat_name:cat_name}).then((result=>{
@@ -569,7 +561,7 @@ router.get('/PCdelete', (req, res) => {
         }
     }))
 });
-//销售管理分类添加功能
+//客户管理分类添加功能
 router.post('/categoryPAdd', function(req, res) {
     let info=req.body;
     let obj={
@@ -642,7 +634,7 @@ router.post('/productsAdd', function(req, res) {
             }
         })
 });
-//销售详情列表批量删除
+//销售详情列表批量Delete
 router.post('/AllDeleteP', (req, res) => {
     let str = req.body.strID;
     let arr=str.split(",");
@@ -669,13 +661,13 @@ router.post('/search', function(req, res) {
     let sel = req.body.sel;
     Products.find({
         cat_id: sel
-    }).populate('cat_id','cat_name').populate('name','title').then(result => {
+    }).populate('cat_id','cat_name').populate('name','cooperativeCustomer').then(result => {
         res.json({
             data: result
         })
     })
 });
-//销售详情列表删除功能
+//销售详情列表Delete功能
 router.get('/Pdelete', (req, res) => {
     let _id = req.query._id;
     Products.remove({_id:_id}).then((result=>{

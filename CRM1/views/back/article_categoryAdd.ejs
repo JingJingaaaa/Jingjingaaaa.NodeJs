@@ -4,20 +4,32 @@
     
 <div id="urHere">Management System<b>></b><strong>Project Progress</strong> </div>
   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
-            <h3><a href="/admin/categoryA" class="actionBtn">Project Progress</a>Add New</h3>
+      <h3><a href="/admin/categoryA" class="actionBtn">Project Progress</a>Add New</h3>
     <form action="article_category.php?rec=insert" method="post">
      <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
       <tr>
        <td width="80" align="right">Project leader</td>
        <td>
-        <input type="text" name="cat_name" value="" size="40" class="inpMain"  />
-       </td>
+        <!-- <input type="text" name="cat_name" value="" size="40" class="inpMain"  /> -->
+        <select name="cat_name">
+          <option value="0">-请选择-</option>
+          <% for(var i=0;i<articles.length;i++){ %>
+          <option  value='<%= articles[i]._id %>'><%= articles[i].leader %></option>
+          <% } %>
+        </select>
+      </td>
       </tr>
       <tr>
        <td align="right">Project name</td>
        <td>
-        <input type="text" name="unique_id" value="" size="40" class="inpMain" />
-       </td>
+        <!-- <input type="text" name="unique_id" value="" size="40" class="inpMain" /> -->
+        <select name="unique_id">
+          <option value="0">未分类</option>
+          <% for(var j=0;j<articles.length;j++){ %>
+          <option value='<%= articles[j]._id %>'><%= articles[j].title %></option>
+          <% } %>
+        </select>
+      </td>
       </tr>
       <tr>
        <td align="right">Progress description</td>
