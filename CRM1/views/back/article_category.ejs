@@ -2,24 +2,20 @@
 <%- include left_nav.ejs %>
  <div id="dcMain">
     
-<div id="urHere">West Ham United Foundation Project Management System<b>></b><strong>客户分类</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
-        <h3><a href="/admin/categoryAAdd" class="actionBtn add">添加分类</a>客户分类</h3>
+<div id="urHere">Management System<b>></b><strong>Project Progress</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+        <h3><a href="/admin/categoryAAdd" class="actionBtn add">Add New</a>Project Progress</h3>
     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
          <tr>
-            <th width="120" align="left">分类名称</th>
-            <th align="left">备注</th>
-            <th align="left">简单描述</th>
-            <th width="60" align="center">排序</th>
-            <th width="80" align="center">操作</th>
+            <th width="120" align="left">Project leader</th>
+            <th align="left">Project name</th>
+            <th align="left">Progress description</th>
           </tr>
             <% for(var i=0;i<categoryA.length;i++){ %>
               <tr>
                 <td align="left"> <a href=""><%= categoryA[i].cat_name %></a></td>
                 <td><%= categoryA[i].unique_id %></td>
                 <td><%= categoryA[i].description %></td>
-                <td align="center"><%= categoryA[i].sort %></td>
-                  <td align="center"><a href="/admin/ACedit/?_id=<%= categoryA[i]._id %>">编辑</a> | <a href="/admin/ACdelete/?_id=<%= categoryA[i]._id %>">删除</a></td>
-
+                <td align="center"><a href="/admin/ACedit/?_id=<%= categoryA[i]._id %>">Edit</a> | <a href="/admin/ACdelete/?_id=<%= categoryA[i]._id %>">Delete</a></td>
               </tr>
              <% } %>
       </table>

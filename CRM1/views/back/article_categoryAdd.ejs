@@ -2,33 +2,27 @@
 <%- include left_nav.ejs %>
  <div id="dcMain">
     
-<div id="urHere">West Ham United Foundation Project Management System<b>></b><strong>客户分类</strong> </div>
+<div id="urHere">Management System<b>></b><strong>Project Progress</strong> </div>
   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
-            <h3><a href="/admin/categoryA" class="actionBtn">客户分类</a>添加分类</h3>
+            <h3><a href="/admin/categoryA" class="actionBtn">Project Progress</a>Add New</h3>
     <form action="article_category.php?rec=insert" method="post">
      <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
       <tr>
-       <td width="80" align="right">分类名称</td>
+       <td width="80" align="right">Project leader</td>
        <td>
         <input type="text" name="cat_name" value="" size="40" class="inpMain"  />
        </td>
       </tr>
       <tr>
-       <td align="right">备注</td>
+       <td align="right">Project name</td>
        <td>
         <input type="text" name="unique_id" value="" size="40" class="inpMain" />
        </td>
       </tr>
       <tr>
-       <td align="right">简单描述</td>
+       <td align="right">Progress description</td>
        <td>
         <textarea name="description" cols="60" rows="4" class="textArea"></textarea>
-       </td>
-      </tr>
-      <tr>
-       <td align="right">排序</td>
-       <td>
-        <input type="text" name="sort"  size="5" class="inpMain" />
        </td>
       </tr>
       <tr>
@@ -36,7 +30,7 @@
        <td>
         <input type="hidden" name="token" value="25bfda40" />
         <input type="hidden" name="cat_id" value="" />
-        <input id="submit" name="submit" class="btn" type="button" value="提交" />
+        <input id="submit" name="submit" class="btn" type="button" value="Submit" />
        </td>
       </tr>
      </table>

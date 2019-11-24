@@ -6,7 +6,6 @@ let CategoryASchema = mongoose.Schema({
     cat_name:String,//分类名
     unique_id:String,//别名
     description:String,//描述
-    sort:Number//排序
 });
 //定义模型
 let CategoryAModel=mongoose.model('CategoryA',CategoryASchema);

@@ -2,7 +2,7 @@
 <%- include left_nav.ejs %>
  <div id="dcMain">
     
-<div id="urHere">West Ham United Foundation Project Management System<b>></b><strong>Project Management</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+<div id="urHere">Management System<b>></b><strong>Project Management</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
         <h3><a href="/admin/articlesAdd" class="actionBtn add">Add New</a>Project Management</h3>
     <div class="filter">
     <form  method="post" id="sel-form">
@@ -35,7 +35,7 @@
       <th width="120" align="center">Target groups</th>
       <th width="100" align="center">Email</th>
       <th width="200" align="center">Project Brief</th>
-      <th  width="80"align="center">Cooperative Customer</th>
+      <th width="80"align="center">Cooperative Customer</th>
       <th align="center">Customer Brief</th>
       <th width="80" align="center">Add Date</th>
       <th width="30" align="center">Operation</th>
@@ -132,7 +132,7 @@
                              "<td align='center'> " + item.cooperativeCustomer + "</td> " +
                              "<td align='center'>" + item.customerBrief + '</td>' +
                              "<td align='center'> " + item.create_date + "</td> " +
-                             "<td align='center'><a href='/admin/Aedit/?_id= '+res.data[index]._id >编辑</a> | <a href='/admin/Pdelete/?name= '+ res.data[index].name>删除</a> </td></tr>"
+                             "<td align='center'><a href='/admin/Pdelete/?name= '+ res.data[index].name>删除</a> </td></tr>"
                  })
                  $("#wrap").html(str);
 

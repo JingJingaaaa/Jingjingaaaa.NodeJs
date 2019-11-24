@@ -18,7 +18,7 @@ router.get('/', function(req, res) {
 // 首页获取数据
 router.get('/getDatas',function(req, res){
 
-    Articles.find().populate("cat_id", "cat_name").then(ca => {
+    Articles.find().then(ca => {
         CategoryP.find().then(cp=> {
             Navs.find().then(result=>{
                 if (result) {
@@ -50,7 +50,7 @@ router.get('/login', function(req, res) {
 });
 //管理员登录操作
 router.post('/login', function(req, res){
-    //接收提交上来的数据
+    //接收Submit上来的数据
     let userInfo=req.body;
     console.log(userInfo);
     let username=userInfo.username;
@@ -67,12 +67,12 @@ router.post('/login', function(req, res){
             //登录成功,
             res.json( {
                 status:0,
-                msg:"登录成功"
+                msg:"Login successful"
             })
         }else{
             res.json( {
                 status:1,
-                msg:"登录失败"
+                msg:"Login failed"
             })
         }
     })
@@ -173,19 +173,19 @@ router.post('/managerAdd', function(req, res) {
             if(result){//判断是查找到
                 res.json({
                     status:1,
-                    msg:"用户名已存在"
+                    msg:"Username already exists"
                 })
             }else{
                 Managers.create(obj).then(result=>{
                     if(result){
                         res.json({
                             status:0,
-                            msg:'管理员添加成功'
+                            msg:'Administrator added successfully'
                         })
                     }else{
                         res.json({
                             status:1,
-                            msg:'管理员添加失败，请稍后再试'
+                            msg:'Administrator added failed, please try again later'
                         })
                     }
                 })
@@ -213,12 +213,12 @@ router.post('/Medit', (req, res) => {
         if(result){
             res.json({
                 status: 0,
-                msg: "修改成功"
+                msg: "Successfully modified"
             })
         }else{
             res.json({
                 status: 1,
-                msg: "修改失败"
+                msg: "Fail to edit"
             })
         }
     })
@@ -283,7 +283,7 @@ router.get('/productsAdd', function(req, res) {
 
 
 
-//渲染客户分类列表页面/admin/categoryA
+//渲染项目进程列表页面/admin/categoryA
 router.get('/categoryA', function(req, res) {
     CategoryA.find().then(result => {
         if(result){
@@ -294,11 +294,11 @@ router.get('/categoryA', function(req, res) {
         }
     })
 });
-//渲染客户分类添加页面/admin/categoryAAdd
+//渲染项目进程添加页面/admin/categoryAAdd
 router.get('/categoryAAdd', function(req, res) {
     res.render('back/article_categoryAdd')
 });
-//渲染客户分类编辑页面/admin/ACedit
+//渲染项目进程编辑页面/admin/ACedit
 router.get('/ACedit', (req, res) => {
     let _id=req.query._id;//拿到id然后将id在CategoryA中查找，将结果返还出来
     CategoryA.findOne({_id:_id}).then(result => {
@@ -308,14 +308,13 @@ router.get('/ACedit', (req, res) => {
         })
     })
 });
-//渲染我的客户页面/admin/articles
+//渲染项目管理页面/admin/articles
 router.get('/articles', function(req, res) {
     let start=req.query.start-0;
     Articles.find().count().then(n=> {
         console.log('n', n)
         Articles.find().skip(start).limit(5).then(result => {
             if (result) {
-                console.log('11111',result)
                 CategoryA.find().then(r=> {
                     res.render('back/articles', {
                         categoryA: r,
@@ -327,7 +326,7 @@ router.get('/articles', function(req, res) {
         });
     })
 });
-//渲染我的客户添加页面/admin/articlesAdd
+//渲染项目管理添加页面/admin/articlesAdd
 router.get('/articlesAdd', function(req, res) {
     CategoryA.find().then(result=>{
         res.render('back/articlesAdd',{
@@ -337,7 +336,7 @@ router.get('/articlesAdd', function(req, res) {
 });
 
 
-//客户分类添加功能
+//项目进程添加功能
 router.post('/categoryAAdd', function(req, res) {
     let info=req.body;
     let obj={
@@ -354,7 +353,7 @@ router.post('/categoryAAdd', function(req, res) {
             if(result){//判断是查找到
                 res.json({
                     status:1,
-                    msg:"分类已存在"
+                    msg:"The person in charge already exists"
                 })
             }else{
                 CategoryA.create(obj)
@@ -362,19 +361,19 @@ router.post('/categoryAAdd', function(req, res) {
                     if(result){
                         res.json({
                             status:0,
-                            msg:'创建成功'
+                            msg:'Created successfully'
                         })
                     }else{
                         res.json({
                             status:1,
-                            msg:'创建失败，请稍后再试'
+                            msg:'Creation failed, please try again later'
                         })
                     }
                 })
             }
         })
 });
-//客户分类删除功能
+//项目进程删除功能
 router.get('/ACdelete', (req, res) => {
     let _id = req.query._id;
     CategoryA.remove({_id:_id}).then((result=>{
@@ -383,7 +382,7 @@ router.get('/ACdelete', (req, res) => {
         }
     }))
 });
-//客户分类编辑功能
+//项目进程编辑功能
 router.post('/ACedit', (req, res) => {
     let obj = {
         cat_name: req.body.cat_name,
@@ -397,17 +396,17 @@ router.post('/ACedit', (req, res) => {
             if(result){
                 res.json({
                     status: 0,
-                    msg: "修改成功"
+                    msg: "Successfully modified"
                 })
             }else{
                 res.json({
                     status: 1,
-                    msg: "修改失败"
+                    msg: "Fail to edit"
                 })
             }
         })
 });
-//客户分类移动功能
+//项目进程移动功能
 router.post("/MoveType",(req,res)=>{
     let strID = req.body.strID;
     let type = req.body.type;
@@ -429,7 +428,7 @@ router.post("/MoveType",(req,res)=>{
             })
     }
 });
-//我的客户删除功能
+//项目管理删除功能
 router.get('/Adelete', (req, res) => {
     let title = req.query.title;
     Articles.remove({title:title}).then((result=>{
@@ -438,7 +437,7 @@ router.get('/Adelete', (req, res) => {
         }
     }))
 });
-//我的客户添加功能
+//项目管理添加功能
 router.post('/articlesAdd', function(req, res) {
     console.log('000000', req.body);
     let info=req.body;
@@ -459,26 +458,26 @@ router.post('/articlesAdd', function(req, res) {
             if(result){//判断是查找到
                 res.json({
                     status:1,
-                    msg:"客户已存在"
+                    msg:"Project already exists"
                 })
             }else{
                 Articles.create(obj).then(result=>{
                     if(result){
                         res.json({
                             status:0,
-                            msg:'客户添加成功'
+                            msg:'Project added successfully'
                         })
                     }else{
                         res.json({
                             status:1,
-                            msg:'客户添加失败，请稍后再试'
+                            msg:'Project addition failed, please try again later'
                         })
                     }
                 })
             }
         })
 });
-//我的客户搜索功能
+//项目管理搜索功能
 router.post('/Asearch', function(req, res) {
     let sel = req.body.sel;
     Articles.find({
@@ -490,20 +489,8 @@ router.post('/Asearch', function(req, res) {
         })
     })
 });
-//我的客户搜索功能
-router.post('/AsearchGroup', function(req, res) {
-    let selGroup = req.body.selGroup;
-    Articles.find({
-        address: selGroup,
-    }).then(result => {
-        console.log('result', result, Articles, Articles.find())
-        res.json({
-            data: result
-        })
-    })
-});
 
-//我的客户批量删除
+//项目管理批量删除
 router.post('/AllDelete', (req, res) => {
     let str = req.body.arrDel;
     let arr=str.split(",");
@@ -514,12 +501,12 @@ router.post('/AllDelete', (req, res) => {
             if(result){
                 res.json({
                     status: 0,
-                    msg: "删除成功"
+                    msg: "successfully deleted"
                 })
             }else{
                 res.json({
                     status: 1,
-                    msg: "删除失败"
+                    msg: "failed to delete"
                 })
             }
         }))
@@ -563,12 +550,12 @@ router.post('/PCedit', (req, res) => {
             if(result){
                 res.json({
                     status: 0,
-                    msg: "修改成功"
+                    msg: "Successfully modified"
                 })
             }else{
                 res.json({
                     status: 1,
-                    msg: "修改失败"
+                    msg: "Fail to edit"
                 })
             }
         })
@@ -666,12 +653,12 @@ router.post('/AllDeleteP', (req, res) => {
             if(result){
                 res.json({
                     status: 0,
-                    msg: "删除成功"
+                    msg: "successfully deleted"
                 })
             }else{
                 res.json({
                     status: 1,
-                    msg: "删除失败"
+                    msg: "failed to delete"
                 })
             }
         }))
