@@ -30,21 +30,10 @@
             </div>
         </div>
     </div>
-<!--<div id="login">-->
-    <!--<div class="title">客户关系管理系统</div>-->
-    <!--<form action="" method="post">-->
-        <!--<ul>-->
-            <!--<li class="inpLi"><b>用户名：</b><input id="u" name="username" type="text" class="inpLogin" ></li>-->
-            <!--<li class="inpLi"><b>密码：</b><input id="p" name="password" type="password" class="inpLogin" ></li>-->
-            <!--<li class="sub"><input id="submit" type="button" name="submit" class="btn" value="登录"></li>-->
-            <!--<li class="action"><a href="#">忘记密码？</a> <em class="separator">|</em> <a href='#'>返回首页</a></li>-->
-        <!--</ul>-->
-    <!--</form>-->
-<!--</div>-->
+
 <script>
     $(function(){
         $('#submit').click(function () {
-            console.log('------------------------')
             $.ajax({
                 url: "/admin/login",
                 type: "POST",

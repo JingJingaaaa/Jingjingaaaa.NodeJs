@@ -60,7 +60,6 @@ router.post('/login', function(req, res){
         username :username,
         password :password
     }).then(result=>{
-        console.log(result)
         if(result){
             req.session.cookie.maxAge=3000000;
             req.session.username=username;
@@ -285,13 +284,18 @@ router.get('/productsAdd', function(req, res) {
 
 //渲染项目进程列表页面/admin/categoryA
 router.get('/categoryA', function(req, res) {
-    CategoryA.find().populate("cat_name","leader").populate("unique_id","title").then(result => {
-        if(result){
-            res.render('back/article_category',{
-                categoryA: result
+    Articles.find().then(r=>{
+        if(r) {
+            CategoryA.find().populate("cat_name","leader").populate("unique_id","title").then(result => {
+                if(result){
+                    res.render('back/article_category',{
+                        categoryA: result
+                    })
+                }
             })
         }
     })
+   
 });
 //渲染项目进程添加页面/admin/categoryAAdd
 router.get('/categoryAAdd', function(req, res) {
@@ -316,7 +320,6 @@ router.get('/ACedit', (req, res) => {
 router.get('/articles', function(req, res) {
     let start=req.query.start-0;
     Articles.find().count().then(n=> {
-        console.log('n', n)
         Articles.find().skip(start).limit(5).then(result => {
             if (result) {
                 CategoryA.find().then(r=> {
@@ -431,7 +434,6 @@ router.get('/Adelete', (req, res) => {
 });
 //项目管理添加功能
 router.post('/articlesAdd', function(req, res) {
-    console.log('000000', req.body);
     let info=req.body;
     let obj={
         aID:info.aID,
@@ -472,6 +474,7 @@ router.post('/articlesAdd', function(req, res) {
 //项目管理搜索功能
 router.post('/Asearch', function(req, res) {
     let sel = req.body.sel;
+    let selGroup = req.body.selGroup;
     Articles.find({
         leader: sel,
     }).then(result => {

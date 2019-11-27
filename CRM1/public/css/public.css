@@ -1,7 +1,7 @@
 /* 全局通用
 ----------------------------------------------- */
 body {
- background-color: #2a3143;
+ background-color: #000;
  font-family: Microsoft Yahei, \5FAE\8F6F\96C5\9ED1, \5B8B\4F53, Arial, Verdana, sans-serif;
  font-size: 12px;
  color: #fff;
@@ -40,7 +40,8 @@ a {
  color: #fff;
 }
 a:hover {
-background-color: #ff4343;
+  /* color: '#bb984d'; */
+background-color: #59b3e4;
  text-decoration: none;
 }
 input, textarea, select {
@@ -109,26 +110,27 @@ p.cue {
  height: 100%;
 }
 #dcHead {
- background-color: #2a3143;
+ background-color: #66192c;
  float: left;
  height: 40px;
  width: 100%;
 }
 #dcLeft {
  float: left;
- width: 179px;
+ width: 220px;
 }
 #dcMain {
  background-color: #FFFFFF;
  border-left: 1px solid #2a3143;
- margin-left: 179px;
+ margin-left: 220px;
  padding-top: 40px;
  *padding-top:0;
  zoom: 1/* padding-top:40px; */
 }
 #dcFooter {
  height: 45px;
- background-color: #2a3143;
+ color: #FFF;
+ background-color: #66192c;
 }
 /*- form -*/
 .btn {
@@ -304,11 +306,11 @@ select {
 /* 公共顶部
 ----------------------------------------------- */
 #head .logo {
- border-right: 1px solid #2a3143;
+ /* border-right: 1px solid #7d2b3a; */
  float: left;
- width: 179px;
- height: 40px;
- background-color: #ff4343;
+ width: 220px;
+ height: 35px;
+ background-color: #66192c;
  text-align: center;
  color: #fff
 }
@@ -363,6 +365,9 @@ select {
 }
 #head .nav .active a.topAdd {
  background: #FFF url(../images/top_add.gif) no-repeat 15px top;
+}
+.westLogo {
+  background: url(../images/logo.png) no-repeat 55px top;
 }
 #head .nav .drop {
  display: none;
@@ -424,9 +429,9 @@ select {
  padding: 4px 0;
 }
 #menu .top {
- border-top: 0;
+ /* border-top: 0;
  border-right: 1px solid #243143;
- background-color: #243143;
+ background-color: #243143; */
 }
 #menu .bot {
  border-bottom: 0;
@@ -456,7 +461,7 @@ select {
 #menu li em {
  float: left;
  display: block;
- width: 130px;
+ width: 150px;
  height: 38px;
  cursor: pointer;
 }
@@ -545,7 +550,7 @@ select {
 /* 当前位置
 ----------------------------------------------- */
 #urHere {
- background-color:#ff4343;
+ background-color:#7d2b3a;
  height: 35px;
  line-height: 37px;
  color: #fff;
@@ -1297,8 +1302,7 @@ font-weight: bold;
  color: #999;
 }
 #footer .line {
- border-top: 1px solid #FFFFFF;
- background-color: #CCCCCC;
+ background-color: transparent;
  height: 1px;
  line-height: 1px;
  font-size: 0;

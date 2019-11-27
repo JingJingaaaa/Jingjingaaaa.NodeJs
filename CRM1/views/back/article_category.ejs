@@ -2,8 +2,8 @@
 <%- include left_nav.ejs %>
  <div id="dcMain">
     
-<div id="urHere">Management System<b>></b><strong>Project Progress</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
-        <h3><a href="/admin/categoryAAdd" class="actionBtn add">Add New</a>Project Progress</h3>
+<div id="urHere">Management System<b>></b><strong>Project Feedback</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+        <h3><a href="/admin/categoryAAdd" class="actionBtn add">Add New</a>Project Feedback</h3>
     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
          <tr>
             <th width="120" align="left">Project leader</th>
@@ -16,7 +16,8 @@
                 <td align="left"> <a href=""><%= categoryA[i].cat_name.leader %></a></td>
                 <td><%= categoryA[i].unique_id.title %></td>
                 <td><%= categoryA[i].description %></td>
-                <td align="center"><a href="/admin/ACedit/?_id=<%= categoryA[i]._id %>">Edit</a> | <a href="/admin/ACdelete/?_id=<%= categoryA[i]._id %>">Delete</a></td>
+                <td align="center"><a href="/admin/ACdelete/?_id=<%= categoryA[i]._id %>">Delete</a></td>
+                <!-- <td align="center"><a href="/admin/ACedit/?_id=<%= categoryA[i]._id %>">Edit</a> | <a href="/admin/ACdelete/?_id=<%= categoryA[i]._id %>">Delete</a></td> -->
               </tr>
              <% } %>
       </table>
@@ -27,7 +28,7 @@
  <div id="footer">
   <div class="line"></div>
   <ul>
-     West Ham United Foundation Project
+    © 1895 - 2019 West Ham United Football Club
   </ul>
  </div>
 </div>  

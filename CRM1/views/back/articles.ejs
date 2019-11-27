@@ -3,7 +3,7 @@
  <div id="dcMain">
     
 <div id="urHere">Management System<b>></b><strong>Project Management</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
-        <h3><a href="/admin/articlesAdd" class="actionBtn add">Add New</a>Project Management</h3>
+    <h3><a href="/admin/articlesAdd" class="actionBtn add">Add New</a>Project Management</h3>
     <div class="filter">
     <form  method="post" id="sel-form">
      <select name="cat_id" id="sel">
@@ -12,16 +12,16 @@
         <option  value='<%= articles[j].leader %>'><%= articles[j].leader %></option>
         <% } %>
      </select>
-     <input id="select" class="btnGray" type="submit" value="By person in charge" />
+     <input id="select" class="btnGray" type="submit" value="By project leader" />
 
      <select name="cat_id" id="selGroup">
         <option value="0">Choose</option>
         <% for(var j=0;j<articles.length;j++){ %>
-        <option  value='<%= articles[j].leader %>'><%= articles[j].address %></option>
+        <option  value='<%= articles[j].address %>'><%= articles[j].address %></option>
         <% } %>
         </select>
      <!-- <input name="filter" id="filter" type="text" class="inpMain" value="" size="20" /> -->
-     <input id="selectGroup" class="btnGray" type="submit" value="According to the group" />
+     <input id="selectGroup" class="btnGray" type="submit" value="By groups" />
     </form>
     </div>
         <div id="list">
@@ -34,11 +34,11 @@
       <th width="80" align="center">Project leader</th>
       <th width="120" align="center">Target groups</th>
       <th width="100" align="center">Email</th>
-      <th width="200" align="center">Project Brief</th>
-      <th width="80"align="center">Cooperative Customer</th>
-      <th align="center">Customer Brief</th>
+      <th width="200" align="center">Project brief</th>
+      <th width="80"align="center">Cooperative customer</th>
+      <th align="center">Customer brief</th>
       <th width="80" align="center">Add Date</th>
-      <th width="30" align="center">Operate/th>
+      <th width="30" align="center">Operate</th>
      </tr>
         <tbody id="wrap">
         <% for(var i=0;i<articles.length;i++){ %>
@@ -65,13 +65,13 @@
      </table>
     <div class="action">
      <select name="action" onchange="douAction()">
-      <option value="0">Other Operating</option>
+      <option value="0">Choose</option>
       <option value="del_all">Delete multiple</option>
-      <option value="category_move">Replacement person in charge</option>
+      <option value="category_move">Replacement Project leader</option>
      </select>
      <select id="MoveType" name="new_cat_id" style="display:none">
          <% for(var j=0;j<articles.length;j++){ %>
-         <option  value='<%= articles[j]._id %>'><%= articles[j].leader %></option>
+         <option  value='<%= articles[j].leader %>'><%= articles[j].leader %></option>
          <% } %>
      </select>
      <input id="submit" name="submit" class="btn" type="button" value="run" />
@@ -90,7 +90,7 @@
  <div id="footer">
   <div class="line"></div>
   <ul>
-     West Ham United Foundation Project
+     
   </ul>
  </div>
 </div>  
@@ -180,7 +180,7 @@
                  type: 'POST',
                  data: {
                      strID: strID,//选中框的_id
-                     type:type//选择的分类
+                     type: type//选择的分类
                  },
                  success: function (res) {
                      if(res.status == 0){
